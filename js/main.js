@@ -4,7 +4,7 @@
 var API_KEY = 'AIzaSyD5naKZk-DtIQL1xf-okCwoKkEhfGDlsZs';
 
 // GCMのエンドポイントのBaseURL
-var GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send';
+var GCM_ENDPOINT = 'https://fcm.googleapis.com/fcm/send';
 
 var curlCommandArea = document.querySelector('#curlCommand');
 var pushButton = document.querySelector('#pushEnableButton');

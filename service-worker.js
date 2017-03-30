@@ -15,7 +15,7 @@ self.addEventListener("push", function(event) {
   event.waitUntil(
     getEndpoint()
     .then(function(endpoint) {
-        return fetch('http://opetech.testadp.com:13094/notifications.json?endpoint=' + endpoint)
+        return fetch('http://v6rp.testadp.com/test/tanaka/notifications.json?endpoint=' + endpoint)
 //      return fetch('/notifications.json?endpoint=' + endpoint)
     })
     .then(function(response) {

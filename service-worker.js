@@ -10,7 +10,7 @@ self.addEventListener('push', function(event) {
   var body = 'Push Test です。';
   var icon = 'ics_logo_512x512.png';
   var tag = 'simple-push-demo-notification-tag';
-  var url = 'http://localhost/test2/';
+  var url = 'https://tanaka-hidekazu.github.io/';
 
   event.waitUntil(
     self.registration.showNotification(title, {

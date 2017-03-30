@@ -1,5 +1,39 @@
 'use strict';
 
+function getEndpoint() {
+  return self.registration.pushManager.getSubscription()
+    .then(function(subscription) {
+      if (subscription) {
+        return subscription.endpoint
+      }
+      throw new Error('User not subscribed')
+  })
+}
+
+self.addEventListener("push", function(event) {
+  console.log('Received a push message', event);
+  event.waitUntil(
+    getEndpoint()
+    .then(function(endpoint) {
+        return fetch('http://opetech.testadp.com:13094/notifications.json?endpoint=' + endpoint)
+//      return fetch('/notifications.json?endpoint=' + endpoint)
+    })
+    .then(function(response) {
+      if (response.status === 200) {
+        return response.json()
+      }
+      throw new Error('notification api response error')
+    })
+    .then(function(response) {
+      self.registration.showNotification(response.title, {
+        icon: response.icon,
+        body: response.body
+      })
+    })
+  )
+});
+
+/*
 self.addEventListener('push', function(event) {
   console.log('Received a push message', event);
 
@@ -24,7 +58,7 @@ self.addEventListener('push', function(event) {
       }
     })
   );
-});
+});*/
 
 self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);

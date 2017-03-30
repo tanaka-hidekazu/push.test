@@ -11,6 +11,7 @@ self.addEventListener('push', function(event) {
   var icon = 'ics_logo_512x512.png';
   var tag = 'simple-push-demo-notification-tag';
   var url = 'https://tanaka-hidekazu.github.io/';
+  if(event.data)body += "\n Text:"+event.data.text();
 
   event.waitUntil(
     self.registration.showNotification(title, {
